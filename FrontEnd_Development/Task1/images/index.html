@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IMAGE GALLERY</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>IMAGE GALLERY</h1>
+    <div class="flexdirection" id="flexdirectionbox">
+      <span class="nav left" onclick="navigate(-1)">&#10094;</span>
+      <img src="/images/image1.jpg" id="fullImg" />
+      <span class="nav right" onclick="navigate(1)">&#10095;</span>
+      <span class="close" onclick="closefullimg()"> X</span>
+    </div>
+
+    <div class="img">
+      <div class="img1">
+        <img src="/images/img1.jpg" onclick="openfullImg(this.src,0)" />
+      </div>
+
+      <div class="img2">
+        <img src="/images/img2.jpg" onclick="openfullImg(this.src,1)" />
+      </div>
+
+      <div class="img3">
+        <img src="/images/img3.jpg" onclick="openfullImg(this.src,2)" />
+      </div>
+
+      <div class="img4">
+        <img src="/images/img4.jpg" onclick="openfullImg(this.src,3)" />
+      </div>
+
+      <div class="img5">
+        <img src="/images/img5.jpg" onclick="openfullImg(this.src,4)" />
+      </div>
+
+      <div class="img6">
+        <img src="/images/img6.jpg" onclick="openfullImg(this.src,5)" />
+      </div>
+
+      <div class="img7">
+        <img src="/images/img7.jpg" onclick="openfullImg(this.src,6)" />
+      </div>
+    </div>
+
+    <script>
+      var flexdirectionbox = document.getElementById("flexdirectionbox");
+      var fullImg = document.getElementById("fullImg");
+      var images = [
+        "/images/img1.jpg",
+        "/images/img2.jpg",
+        "/images/img3.jpg",
+        "/images/img4.jpg",
+        "/images/img5.jpg",
+        "/images/img6.jpg",
+        "/images/img7.jpg",
+      ];
+      var currentIndex = 0;
+
+      function openfullImg(pic, index) {
+        flexdirectionbox.style.display = "flex";
+        fullImg.src = pic;
+        currentIndex = index;
+      }
+
+      function closefullimg() {
+        flexdirectionbox.style.display = "none";
+      }
+
+      function navigate(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) {
+          currentIndex = images.length - 1;
+        } else if (currentIndex >= images.length) {
+          currentIndex = 0;
+        }
+        fullImg.src = images[currentIndex];
+      }
+    </script>
+  </body>
+</html>
