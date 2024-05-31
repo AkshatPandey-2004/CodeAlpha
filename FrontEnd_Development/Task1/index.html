@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Image Gallery</h1>
+    </header>
+    
+    <div class="flexdirection" id="flexdirectionbox">
+      <button class="nav left" onclick="navigate(-1)">&#10094;</button>
+      <img src="/images/img1.jpg" id="fullImg" alt="Full View" />
+      <button class="nav right" onclick="navigate(1)">&#10095;</button>
+      <button class="close" onclick="closefullimg()">X</button>
+    </div>
+
+    <main class="img">
+      <figure class="img1">
+        <img src="/images/img1.jpg" onclick="openfullImg(this.src,0)" alt="Thumbnail 1" />
+      </figure>
+      <figure class="img2">
+        <img src="/images/img2.jpg" onclick="openfullImg(this.src,1)" alt="Thumbnail 2" />
+      </figure>
+      <figure class="img3">
+        <img src="/images/img3.jpg" onclick="openfullImg(this.src,2)" alt="Thumbnail 3" />
+      </figure>
+      <figure class="img4">
+        <img src="/images/img4.jpg" onclick="openfullImg(this.src,3)" alt="Thumbnail 4" />
+      </figure>
+      <figure class="img5">
+        <img src="/images/img5.jpg" onclick="openfullImg(this.src,4)" alt="Thumbnail 5" />
+      </figure>
+      <figure class="img6">
+        <img src="/images/img6.jpg" onclick="openfullImg(this.src,5)" alt="Thumbnail 6" />
+      </figure>
+      <figure class="img7">
+        <img src="/images/img7.jpg" onclick="openfullImg(this.src,6)" alt="Thumbnail 7" />
+      </figure>
+    </main>
+
+    <script>
+      const flexdirectionbox = document.getElementById("flexdirectionbox");
+      const fullImg = document.getElementById("fullImg");
+      const images = [
+        "/images/img1.jpg",
+        "/images/img2.jpg",
+        "/images/img3.jpg",
+        "/images/img4.jpg",
+        "/images/img5.jpg",
+        "/images/img6.jpg",
+        "/images/img7.jpg",
+      ];
+      let currentIndex = 0;
+
+      function openfullImg(pic, index) {
+        flexdirectionbox.style.display = "flex";
+        fullImg.src = pic;
+        currentIndex = index;
+      }
+
+      function closefullimg() {
+        flexdirectionbox.style.display = "none";
+      }
+
+      function navigate(direction) {
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+        fullImg.src = images[currentIndex];
+      }
+    </script>
+  </body>
+</html>
